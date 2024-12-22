@@ -1,5 +1,4 @@
-from src import masks
+from src import widget
 
 if __name__ == "__main__":
-    print(masks.get_mask_card_number(input("Введите номер карты: ")))
-    print(masks.get_mask_account(input("Введите номер счета: ")))
+    print(widget.mask_account_card(input("Введите номер карты или счета: ")))
