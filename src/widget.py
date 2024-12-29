@@ -4,14 +4,11 @@ from src.masks import get_mask_account, get_mask_card_number
 def mask_account_card(card_or_account_data: str) -> str:
     """Функция, которая обрабатывает информацию о картах и счетах"""
     splited_card_or_account_data = card_or_account_data.split()
+    number = splited_card_or_account_data[-1]
     if "счет" in card_or_account_data.lower():
-        for name_item in splited_card_or_account_data:
-            if name_item.isdigit():
-                masked_data = card_or_account_data.replace(name_item, get_mask_account(card_or_account_data))
+        masked_data = card_or_account_data.replace(number, get_mask_account(number))
     else:
-        for name_item in splited_card_or_account_data:
-            if name_item.isdigit():
-                masked_data = card_or_account_data.replace(name_item, get_mask_card_number(card_or_account_data))
+        masked_data = card_or_account_data.replace(number, get_mask_card_number(number))
     return masked_data
 
 
