@@ -1,10 +1,10 @@
-def filter_by_state(list_of_dicts: list, state="EXECUTED") -> list:
+def filter_by_state(transactions: list, state="EXECUTED") -> list:
     """Отбирает те транзакции, которые были исполнены"""
-    new_list = []
-    for dictionary in list_of_dicts:
-        if "EXECUTED" in dictionary.values():
-            new_list.append(dictionary)
-    return new_list
+    filtered_transactions = []
+    for transaction in transactions:
+        if "EXECUTED" in transaction.values():
+            filtered_transactions.append(transaction)
+    return filtered_transactions
 
 
 # пример входных данных и работы функции
@@ -16,9 +16,9 @@ def filter_by_state(list_of_dicts: list, state="EXECUTED") -> list:
 # print(result)
 
 
-def sort_by_date(list_of_dicts: list, reverse=True) -> list:
+def sort_by_date(transactions: list, reverse=True) -> list:
     """Сортирует транзакции в порядке убывания по дате их осуществления"""
-    return sorted(list_of_dicts, key=lambda x: x["date"], reverse=reverse)
+    return sorted(transactions, key=lambda x: x["date"], reverse=reverse)
 
 
 # пример входных данных и работы функции
