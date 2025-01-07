@@ -3,7 +3,7 @@ def filter_by_state(list_of_transactions: list, state: str = "EXECUTED") -> list
     filtered_transactions = []
 
     for transaction in list_of_transactions:
-        if state in transaction.values():
+        if transaction["state"] == state:
             filtered_transactions.append(transaction)
     return filtered_transactions
 
