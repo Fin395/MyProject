@@ -1,7 +1,7 @@
 def get_mask_card_number(card_number: str) -> str:
     """Функция,которая принимает на вход номер карты и возвращает ее маску"""
     card_number_length = len(card_number)
-    if card_number_length !=16:
+    if card_number_length != 16:
         raise ValueError("Номер карты должен состоять из 16 цифр")
     else:
         splited_card_number = card_number.split()
