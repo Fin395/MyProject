@@ -7,7 +7,7 @@ def mask_account_card(card_or_account_data: str) -> str | None:
         splited_card_or_account_data = card_or_account_data.split()
         number = splited_card_or_account_data[-1]
     except IndexError:
-        print("Вы забыли ввести номер карты или счета")
+        print("Вы забыли ввести номер карты/счета")
         return None
     else:
         if "счет" in card_or_account_data.lower():
