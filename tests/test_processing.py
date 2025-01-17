@@ -38,7 +38,7 @@ def test_filter_by_state_without_status() -> None:
                 {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
             ]
         )
-        is None
+        == []
     )
 
 

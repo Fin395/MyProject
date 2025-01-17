@@ -1,14 +1,14 @@
 from src.masks import get_mask_account, get_mask_card_number
 
 
-def mask_account_card(card_or_account_data: str) -> str:
+def mask_account_card(card_or_account_data: str) -> str | None:
     """Функция, которая обрабатывает информацию о картах и счетах"""
     try:
         splited_card_or_account_data = card_or_account_data.split()
         number = splited_card_or_account_data[-1]
     except IndexError:
         print("Вы забыли ввести номер карты или счета")
-
+        return None
     else:
         if "счет" in card_or_account_data.lower():
             masked_data = card_or_account_data.replace(number, get_mask_account(number))
@@ -17,7 +17,7 @@ def mask_account_card(card_or_account_data: str) -> str:
         return masked_data
 
 
-def get_date(date_to_fix: str) -> str:
+def get_date(date_to_fix: str) -> str | None:
     """Функция возвращает дату в корректном формате"""
     date_list = []
     try:
@@ -31,5 +31,6 @@ def get_date(date_to_fix: str) -> str:
             raise ValueError
     except ValueError:
         print("Вы забыли ввести дату")
+        return None
     else:
         return date_in_required_format

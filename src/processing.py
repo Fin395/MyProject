@@ -7,7 +7,7 @@ def filter_by_state(list_of_transactions: list[dict], state: str = "EXECUTED") -
                 filtered_transactions.append(transaction)
     except KeyError:
         print("Отсутствуют сведения о статусе транзакции")
-    else:
+    finally:
         return filtered_transactions
 
 
