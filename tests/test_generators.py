@@ -59,3 +59,31 @@ def test_filter_by_currency_empty(sample_transactions_empty: list) -> None:
     """Тестирование случаев, когда список транзакций отсутствует"""
     result = list(filter_by_currency(sample_transactions_empty, "USD"))
     assert result == []
+
+
+def test_transaction_descriptions(sample_transactions: list[dict]) -> None:
+    """Тестирование корректности описания каждой транзакции"""
+    result = transaction_descriptions(sample_transactions)
+    assert next(result) == "Перевод организации"
+    assert next(result) == "Перевод со счета на счет"
+    assert next(result) == "Перевод со счета на счет"
+
+
+def test_transaction_descriptions_empty(sample_transactions_empty: list) -> None:
+    """Тестирование работы при отсутствии входных данных"""
+    result = list(transaction_descriptions(sample_transactions_empty))
+    assert result == []
+
+
+@pytest.mark.parametrize(
+    "start, stop, expected",
+    [
+        (1234123412341230, 1234123412341231, "1234 1234 1234 1230"),
+        (1234123412341231, 1234123412341232, "1234 1234 1234 1231"),
+        (1234123412341232, 1234123412341233, "1234 1234 1234 1232"),
+    ],
+)
+def test_card_number_generator(start: int, stop: int, expected: str) -> None:
+    """Тестирование корректности формата и крайних значений"""
+    generator = card_number_generator(start, stop)
+    assert next(generator) == expected
