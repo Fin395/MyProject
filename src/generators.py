@@ -1,11 +1,11 @@
-from typing import Generator
+from typing import Any, Generator
 
 
-def filter_by_currency(transactions: list[dict], currency: str) -> Generator[dict]:
+def filter_by_currency(transactions: list[dict], currency: str) -> Generator[dict, Any, None]:
     """Функция возвращает итератор для получения транзакций, где валюта операции соответствует заданной"""
-    for transaction in transactions:
-        filter(lambda transaction: transaction["operationAmount"]["currency"]["code"] == currency, transactions)
-        yield transaction
+    return (
+        transaction for transaction in transactions if transaction["operationAmount"]["currency"]["code"] == currency
+    )
 
 
 def transaction_descriptions(transactions: list[dict]) -> Generator[str]:
