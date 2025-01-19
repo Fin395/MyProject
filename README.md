@@ -33,10 +33,12 @@ executed_transactions = filter_by_state(transactions)
 
 # Пример использования sort_by_date
 sorted_transactions = sort_by_date(transactions)
+```
 
 Также в проекте в модуле **generators.py** созданы функции, реализующие генераторы для обработки данных.
-Примеры использования таких функций:
 
+Примеры использования таких функций:
+```
 from src.generators card_number_generator, filter_by_currency, transaction_descriptions
 
 # Пример использования filter_by_currency
