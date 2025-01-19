@@ -6,3 +6,9 @@ def filter_by_currency(transactions: list[dict], currency: str) -> Generator[dic
     for transaction in transactions:
         filter(lambda transaction: transaction["operationAmount"]["currency"]["code"] == currency, transactions)
         yield transaction
+
+
+def transaction_descriptions(transactions: list[dict]) -> Generator[str]:
+    for transaction in transactions:
+        description = transaction["description"]
+        yield description
