@@ -35,7 +35,27 @@ executed_transactions = filter_by_state(transactions)
 sorted_transactions = sort_by_date(transactions)
 ```
 
+Также в проекте в модуле **generators.py** созданы функции, реализующие генераторы для обработки данных.
 
+Примеры использования таких функций:
+```
+from src.generators card_number_generator, filter_by_currency, transaction_descriptions
+
+# Пример использования filter_by_currency
+usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(2):
+    print(next(usd_transactions))
+
+# Пример использования transaction_descriptions
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+    
+# Пример использования card_number_generator
+for card_number in card_number_generator(1, 5):
+    print(card_number)    
+```
+    
 ## Тестирование
 
 В проекте для тестирования используются фикстуры, параметризация.
