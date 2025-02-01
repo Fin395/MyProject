@@ -1,0 +1,36 @@
+my_function started at 1738102294.3423321
+my_function finished at 1738102294.3423338
+my_function ok, result: 3
+my_function started at 1738102294.3429563
+my_function finished at 1738102294.3429585
+my_function ok, result: 3
+my_function started at 1738102294.3449664
+my_function finished at 1738102294.3449705
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738102294.3483639
+my_function finished at 1738102294.3483653
+my_function ok, result: 3
+my_function started at 1738102351.0829985
+my_function finished at 1738102351.0830002
+my_function ok, result: 3
+my_function started at 1738102351.08338
+my_function finished at 1738102351.0833817
+my_function ok, result: 3
+my_function started at 1738102351.135399
+my_function finished at 1738102351.1354094
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738102351.141071
+my_function finished at 1738102351.1410732
+my_function ok, result: 3
+my_function started at 1738102438.9809852
+my_function finished at 1738102438.9809868
+my_function ok, result: 3
+my_function started at 1738102438.981373
+my_function finished at 1738102438.9813745
+my_function ok, result: 3
+my_function started at 1738102438.9834538
+my_function finished at 1738102438.9834578
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738102438.9869835
+my_function finished at 1738102438.9869852
+my_function ok, result: 3

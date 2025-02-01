@@ -50,3 +50,17 @@ def test_log_printing_to_file() -> None:
     with open("mylog.txt", "r") as file:
         content = file.read()
     assert "my_function ok, result: 3" in content
+
+
+def test_log_console_capture_if_valid(capsys: Any) -> Any:
+    """Тестирование вывода результатов в консоль при некорректно переданных аргументах"""
+    with pytest.raises(Exception) as f:
+
+        @log()
+        def my_function(x: int | float, y: int | float) -> int | float:
+            return x + y
+
+        my_function(1)
+
+        captured = capsys.readouterr()
+        assert f in captured.out

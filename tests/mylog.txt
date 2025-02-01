@@ -1,0 +1,12 @@
+my_function started at 1738438183.0595963
+my_function finished at 1738438183.0595968
+my_function ok, result: 3
+my_function started at 1738438183.0607157
+my_function finished at 1738438183.0607166
+my_function ok, result: 3
+my_function started at 1738438187.405709
+my_function finished at 1738438187.4057124
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738438202.4023886
+my_function finished at 1738438202.402389
+my_function ok, result: 3
