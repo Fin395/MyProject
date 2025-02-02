@@ -9,6 +9,7 @@ API_KEY = os.getenv("API_KEY")
 
 
 def get_transaction_amount(transaction_info: dict) -> Any:
+    """Функцию принимает на вход транзакцию и конвертирует сумму транзакции в рубли"""
     if transaction_info["operationAmount"]["currency"]["code"] == "RUB":
         return transaction_info["operationAmount"]["amount"]
     else:
