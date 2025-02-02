@@ -1,6 +1,11 @@
+import os
 from typing import Any
 
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 
 def get_transaction_amount(transaction_info: dict) -> Any:
@@ -13,7 +18,7 @@ def get_transaction_amount(transaction_info: dict) -> Any:
             "from": transaction_info["operationAmount"]["currency"]["code"],
             "to": "RUB",
         }
-        headers = {"apikey": "sqwzzHPL01dnAmjyy2dBIn3kW6lTnIbB"}
+        headers = {"apikey": API_KEY}
         response = requests.get(url, headers=headers, params=payload)
         if response.status_code == 200:
             transaction_amount = response.json()
