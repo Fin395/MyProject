@@ -23,6 +23,6 @@ def get_transaction_amount(transaction_info: dict) -> Any:
         response = requests.get(url, headers=headers, params=payload)
         if response.status_code == 200:
             transaction_amount = response.json()
-            return transaction_amount["result"]
+            return float(transaction_amount["result"])
         else:
             return None
