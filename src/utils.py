@@ -1,6 +1,5 @@
 import json
 from typing import Any
-import os
 
 
 def get_transactions(path_to_file: str) -> Any:

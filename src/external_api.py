@@ -25,4 +25,4 @@ def get_transaction_amount(transaction_info: dict) -> Any:
             transaction_amount = response.json()
             return float(transaction_amount["result"])
         else:
-            return None
+            print(f"Запрос не был успешным. Возможная причина: {response.reason}")

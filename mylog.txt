@@ -142,3 +142,63 @@ my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 
 my_function started at 1738536557.0936542
 my_function finished at 1738536557.0936558
 my_function ok, result: 3
+my_function started at 1738537739.1659443
+my_function finished at 1738537739.1659458
+my_function ok, result: 3
+my_function started at 1738537739.1663373
+my_function finished at 1738537739.1663384
+my_function ok, result: 3
+my_function started at 1738537739.1686997
+my_function finished at 1738537739.168704
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738537739.1719377
+my_function finished at 1738537739.1719394
+my_function ok, result: 3
+my_function started at 1738539986.3482416
+my_function finished at 1738539986.348243
+my_function ok, result: 3
+my_function started at 1738539986.3486283
+my_function finished at 1738539986.3486295
+my_function ok, result: 3
+my_function started at 1738539986.3507147
+my_function finished at 1738539986.3507192
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738539986.3551154
+my_function finished at 1738539986.355117
+my_function ok, result: 3
+my_function started at 1738540452.844459
+my_function finished at 1738540452.8444605
+my_function ok, result: 3
+my_function started at 1738540452.8448532
+my_function finished at 1738540452.8448546
+my_function ok, result: 3
+my_function started at 1738540452.8469093
+my_function finished at 1738540452.8469133
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738540452.8497214
+my_function finished at 1738540452.849723
+my_function ok, result: 3
+my_function started at 1738541094.6708624
+my_function finished at 1738541094.6708639
+my_function ok, result: 3
+my_function started at 1738541094.6712809
+my_function finished at 1738541094.6712825
+my_function ok, result: 3
+my_function started at 1738541094.6740935
+my_function finished at 1738541094.6740978
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738541094.6767871
+my_function finished at 1738541094.6767888
+my_function ok, result: 3
+my_function started at 1738541453.2213407
+my_function finished at 1738541453.2213423
+my_function ok, result: 3
+my_function started at 1738541453.2217252
+my_function finished at 1738541453.2217264
+my_function ok, result: 3
+my_function started at 1738541453.223806
+my_function finished at 1738541453.2238097
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1738541453.2272024
+my_function finished at 1738541453.2272038
+my_function ok, result: 3
