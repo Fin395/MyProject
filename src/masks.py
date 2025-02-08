@@ -1,14 +1,28 @@
+import logging
+
+logger = logging.getLogger("masks")
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler(r"..\logs\masks.log", mode="w", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+
 def get_mask_card_number(card_number: str) -> str:
     """Функция, которая принимает на вход номер карты и возвращает ее маску"""
     card_number_length = len(card_number)
     if card_number_length != 16:
+        logger.error("Ошибка: номер карты указан неверно")
         raise ValueError("Номер карты должен состоять из 16 цифр")
     else:
+        logger.info("Происходит разбивка номера на символы")
         splited_card_number = card_number.split()
         for name_item in splited_card_number:
             if name_item.isdigit():
+                logger.info("Происходит маскировка номера карты")
                 masked_card = f"{name_item[0:4]} {name_item[4:6]}** **** {name_item[-4:]}"
             else:
+                logger.error("Ошибка: неверный формат карты")
                 raise TypeError("В номере карты присутствуют нечисловые символы")
         return masked_card
 
