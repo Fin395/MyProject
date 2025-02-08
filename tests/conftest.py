@@ -92,3 +92,25 @@ def sample_transactions() -> list[dict]:
 def sample_transactions_empty() -> list:
     """Создаем фикстуру для тестирования"""
     return []
+
+
+@pytest.fixture
+def sample_transaction_in_rub() -> dict:
+    """Создаем фикстуру для тестирования функции get_transaction_amount"""
+    return {
+        "id": 441945886,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:50:58.294041",
+        "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}},
+    }
+
+
+@pytest.fixture
+def sample_transaction_in_usd() -> dict:
+    """Создаем фикстуру для тестирования функции get_transaction_amount"""
+    return {
+        "id": 41428829,
+        "state": "EXECUTED",
+        "date": "2019-07-03T18:35:29.512364",
+        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+    }
