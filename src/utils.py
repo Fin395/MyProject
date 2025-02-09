@@ -1,10 +1,14 @@
 import json
 import logging
 from typing import Any
+import os
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+logs_path = os.path.join(dir_path, '..', 'logs', 'utils.log')
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler(r"..\logs\utils.log", mode="w", encoding="utf-8")
+file_handler = logging.FileHandler(logs_path, mode="w", encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s %(name)s %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
