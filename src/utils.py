@@ -1,10 +1,10 @@
 import json
 import logging
-from typing import Any
 import os
+from typing import Any
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-logs_path = os.path.join(dir_path, '..', 'logs', 'utils.log')
+logs_path = os.path.join(dir_path, "..", "logs", "utils.log")
 
 logger = logging.getLogger("utils")
 logger.setLevel(logging.DEBUG)

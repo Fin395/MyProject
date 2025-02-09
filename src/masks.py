@@ -2,7 +2,7 @@ import logging
 import os
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-logs_path = os.path.join(dir_path, '..', 'logs', 'masks.log')
+logs_path = os.path.join(dir_path, "..", "logs", "masks.log")
 
 
 logger = logging.getLogger("masks")
