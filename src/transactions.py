@@ -24,5 +24,5 @@ def get_transactions_from_excel(path_to_excel_file: str) -> list[Any]:
         print("Ошибка, не удалось получить данные")
         return []
 
-#result= get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
+result= get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
 #print(result)
