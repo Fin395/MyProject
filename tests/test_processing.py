@@ -30,7 +30,7 @@ def test_filter_by_state_correct_filtering(
 
 
 def test_filter_by_state_without_status() -> None:
-    """Тестирование корректной работы функции, если отсутстыует статус транзакции"""
+    """Тестирование корректной работы функции, если отсутствует статус транзакции"""
     assert (
         filter_by_state(
             [
