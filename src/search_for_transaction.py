@@ -1,32 +1,21 @@
 import re
-from collections import defaultdict, Counter
-
-from src.transactions import get_transactions_from_csv
-
+from collections import Counter
 
 
 def search_for_transcations_by_string(list_of_transactions: list[dict], search_string: str) -> list[dict]:
-    """ Функция ищет список транзакций по заданной строке """
+    """Функция ищет список транзакций по заданной строке"""
     filtered_transactions = []
     pattern = re.compile(f"{search_string}")
     for banking_transaction in list_of_transactions:
         description = banking_transaction["description"]
-        match = pattern.search(f'{description}')
+        match = pattern.search(f"{description}")
         if match:
             filtered_transactions.append(banking_transaction)
     return filtered_transactions
 
 
-#list_to_process = get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
-#print(search_for_transcations_by_string(list_to_process, "Перевод со счета на счет"))
-
-#Напишите функцию, которая будет принимать список словарей с данными о банковских операциях
-# и список категорий операций, а возвращать словарь, в котором ключи — это названия категорий,
-# а значения — это количество операций в каждой категории. Категории операций хранятся в поле description
-
-
 def count_transactions_category(list_of_transactions: list[dict], list_of_categories: list[str]) -> dict:
-    """ Функция генерирует количество операций по заданным категориям """
+    """Функция генерирует количество операций по заданным категориям"""
     new_dict = {}
     all_categories = []
     for transaction in list_of_transactions:
@@ -35,8 +24,4 @@ def count_transactions_category(list_of_transactions: list[dict], list_of_catego
     for key, value in counted_categories.items():
         if key in list_of_categories:
             new_dict[key] = value
-    return(new_dict)
-
-
-list_to_process = get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
-print(count_transactions_category(list_to_process, ["Перевод организации", "Снятие наличных"]))
+    return new_dict
