@@ -37,7 +37,7 @@ def similar_date_transactions() -> list[dict]:
 
 
 @pytest.fixture
-def sample_transactions() -> list[dict]:
+def sample_transactions_json() -> list[dict]:
     """Создаем фикстуру для тестирования"""
     return [
         {
@@ -95,7 +95,7 @@ def sample_transactions_empty() -> list:
 
 
 @pytest.fixture
-def sample_transaction_in_rub() -> dict:
+def sample_transaction_json_in_rub() -> dict:
     """Создаем фикстуру для тестирования функции get_transaction_amount"""
     return {
         "id": 441945886,
@@ -106,11 +106,32 @@ def sample_transaction_in_rub() -> dict:
 
 
 @pytest.fixture
-def sample_transaction_in_usd() -> dict:
+def sample_transaction_csv() -> list[dict]:
+    """Создаем фикстуру для тестирования функции get_transaction_amount"""
+    return [
+        {
+            'id': 650703.0,
+            'state': 'EXECUTED',
+            'amount': 16210.0,
+            'currency_name': 'Sol',
+            'currency_code': 'PEN'
+        },
+        {
+            'id': 3598919.0,
+            'state': 'EXECUTED',
+            'amount': 29740.0,
+            'currency_name': 'Peso',
+            'currency_code': 'COP'
+        }]
+
+
+@pytest.fixture
+def sample_transaction_csv_in_usd() -> dict:
     """Создаем фикстуру для тестирования функции get_transaction_amount"""
     return {
-        "id": 41428829,
-        "state": "EXECUTED",
-        "date": "2019-07-03T18:35:29.512364",
-        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+        'id': 650703.0,
+        'state': 'EXECUTED',
+        'amount': 16210.0,
+        'currency_name': 'Sol',
+        'currency_code': 'PEN'
     }

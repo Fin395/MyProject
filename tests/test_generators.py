@@ -1,11 +1,11 @@
 import pytest
 
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+from src.generators import card_number_generator, filter_by_currency_json, transaction_descriptions
 
 
-def test_filter_by_currency_usd(sample_transactions: list[dict]) -> None:
+def test_filter_by_currency_json_usd(sample_transactions: list[dict]) -> None:
     """Тестирование корректной фильтрации, если валюта - USD"""
-    result = filter_by_currency(sample_transactions, "USD")
+    result = filter_by_currency_json(sample_transactions, "USD")
     assert next(result) == {
         "id": 939719570,
         "state": "EXECUTED",
@@ -26,9 +26,9 @@ def test_filter_by_currency_usd(sample_transactions: list[dict]) -> None:
     }
 
 
-def test_filter_by_currency_rub(sample_transactions: list[dict]) -> None:
+def test_filter_by_currency_json_rub(sample_transactions: list[dict]) -> None:
     """Тестирование корректной фильтрации, если валюта - RUB"""
-    result = filter_by_currency(sample_transactions, "RUB")
+    result = filter_by_currency_json(sample_transactions, "RUB")
     assert next(result) == {
         "id": 873106923,
         "state": "EXECUTED",
@@ -51,13 +51,13 @@ def test_filter_by_currency_rub(sample_transactions: list[dict]) -> None:
 
 def test_filter_by_currency_no_currency(sample_transactions: list[dict]) -> None:
     """Тестирование случаев, когда заданная валюта отсутствует"""
-    result = list(filter_by_currency(sample_transactions, "EURO"))
+    result = list(filter_by_currency_json(sample_transactions, "EURO"))
     assert result == []
 
 
-def test_filter_by_currency_empty(sample_transactions_empty: list) -> None:
+def test_filter_by_currency_json_empty(sample_transactions_empty: list) -> None:
     """Тестирование случаев, когда список транзакций отсутствует"""
-    result = list(filter_by_currency(sample_transactions_empty, "USD"))
+    result = list(filter_by_currency_json(sample_transactions_empty, "USD"))
     assert result == []
 
 

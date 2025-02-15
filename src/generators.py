@@ -6,8 +6,7 @@ def filter_by_currency_json(transactions: list[dict], currency: str) -> Generato
     return (
         transaction
         for transaction in transactions
-        if "operationAmount" in transaction.keys() and transaction["operationAmount"]["currency"]["code"] == currency
-    )
+        if "operationAmount" in transaction.keys() and transaction["operationAmount"]["currency"]["code"] == currency)
 
 
 def filter_by_currency_csv_or_excel(transactions: list[dict], currency: str) -> Generator[dict, Any, None]:
