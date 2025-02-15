@@ -99,7 +99,6 @@ def main() -> None:
                     currency_name = trans["currency_name"]
                 else:
                     continue
-
                 print(f"{date_of_trans} {kind_of_trans}")
                 if trans["description"] == "Открытие вклада":
                     masked_account = mask_account_card(trans["to"])
