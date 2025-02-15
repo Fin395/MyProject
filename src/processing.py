@@ -3,8 +3,11 @@ def filter_by_state(list_of_transactions: list[dict], state: str = "EXECUTED") -
     filtered_transactions = []
     try:
         for transaction in list_of_transactions:
-            if transaction["state"] == state:
-                filtered_transactions.append(transaction)
+            if len(transaction) !=0:
+                if transaction["state"] == state:
+                    filtered_transactions.append(transaction)
+            else:
+                continue
     except KeyError:
         print("Отсутствуют сведения о статусе транзакции")
     finally:
