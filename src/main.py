@@ -1,22 +1,24 @@
-from src.utils import get_transactions
-from src.transactions import get_transactions_from_csv, get_transactions_from_excel
+from src.generators import filter_by_currency_csv_or_excel, filter_by_currency_json
 from src.processing import filter_by_state, sort_by_date
-from src.generators import filter_by_currency_json, filter_by_currency_csv_or_excel
 from src.search_for_transaction import search_for_transcations_by_string
+from src.transactions import get_transactions_from_csv, get_transactions_from_excel
+from src.utils import get_transactions
 from src.widget import get_date, mask_account_card
 
 
-def main():
+def main() -> None:
+    """Основная функция, которая соединяет логику и взаимодействует с пользователем"""
     transactions_data = []
-    user_input = int(input("""Привет! 
+    user_input = int(
+        input(
+            """Привет!
 Добро пожаловать в программу работы с банковскими транзакциями.
 Выберите необходимый пункт меню:
 1. Получить информацию о транзакциях из JSON-файла
 2. Получить информацию о транзакциях из CSV-файла
-3. Получить информацию о транзакциях из XLSX-файла
-"""
-                       )
-                     )
+3. Получить информацию о транзакциях из XLSX-файла\n"""
+        )
+    )
     if user_input == 1:
         print("Для обработки выбран JSON-файл.")
         transactions_data = get_transactions(r"C:\Users\Sergei\PycharmProjects\MyProject\src\..\data\operations.json")
@@ -25,20 +27,23 @@ def main():
         transactions_data = get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
     elif user_input == 3:
         print("Для обработки выбран XLSX-файл.")
-        transactions_data = get_transactions_from_excel(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions_excel.xlsx")
+        transactions_data = get_transactions_from_excel(
+            r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions_excel.xlsx"
+        )
 
-    status_selected = input("""
+    status_selected = input(
+        """
 Введите статус, по которому необходимо выполнить фильтрацию.
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING
-""")
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n"""
+    )
 
     while status_selected.upper() not in ["EXECUTED", "CANCELED", "PENDING"]:
         print(f"Статус операции {status_selected} недоступен")
-        status_selected = input("""
+        status_selected = input(
+            """
 Введите статус, по которому необходимо выполнить фильтрацию.
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING
-"""
-                    )
+Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n"""
+        )
     if status_selected.upper() in ["EXECUTED", "CANCELED", "PENDING"]:
         print(f"Операции отфильтрованы по статусу {status_selected.upper()}.")
         filtered_transactions = filter_by_state(transactions_data, status_selected.upper())
@@ -60,9 +65,9 @@ def main():
         filtered_transactions = filtered_transactions
     else:
         if user_input == 1:
-            filtered_transactions = filter_by_currency_json(filtered_transactions, "RUB")
+            filtered_transactions = list(filter_by_currency_json(filtered_transactions, "RUB"))
         else:
-            filtered_transactions = filter_by_currency_csv_or_excel(filtered_transactions, "RUB")
+            filtered_transactions = list(filter_by_currency_csv_or_excel(filtered_transactions, "RUB"))
 
     select_filter = input("Отфильтровать список транзакций по определенному слову в описании? Да/Нет\n")
     if select_filter.lower() == "нет":
@@ -78,9 +83,10 @@ def main():
     if len(filtered_transactions) == 0:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
     else:
-        print("Распечатываю итоговый список транзакций...")
+        print("Распечатываю итоговый список транзакций...\n")
         length_of_filtered_transactions = len(filtered_transactions)
-        print(f"Всего банковских операций в выборке: {length_of_filtered_transactions}")
+        print(f"Всего банковских операций в выборке: {length_of_filtered_transactions}\n")
+
         for trans in filtered_transactions:
             date_of_trans = get_date(trans["date"])
             kind_of_trans = trans["description"]
@@ -102,12 +108,8 @@ def main():
                     masked_number_from = mask_account_card(trans["from"])
                     masked_number_to = mask_account_card(trans["to"])
                     print(f"{masked_number_from} -> {masked_number_to}")
-                print(f"Сумма: {total_amount} {currency_name}")
-
-
+                print(f"Сумма: {total_amount} {currency_name}\n")
 
 
 if __name__ == "__main__":
     main()
-#    print(widget.mask_account_card(input("Введите номер карты или счета: ")))
-#    print(widget.get_date(input("Введите дату: ")))
