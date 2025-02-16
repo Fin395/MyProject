@@ -22,10 +22,17 @@ def count_transactions_category(list_of_transactions: list[dict], list_of_catego
     """Функция генерирует количество операций по заданным категориям"""
     new_dict = {}
     all_categories = []
+
     for transaction in list_of_transactions:
         all_categories.append(transaction.get("description"))
+
     counted_categories = Counter(all_categories)
     for key, value in counted_categories.items():
         if key in list_of_categories:
             new_dict[key] = value
+
+    for category in list_of_categories:
+        if category not in all_categories:
+            new_dict[category] = 0
+
     return new_dict

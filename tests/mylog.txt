@@ -10,3 +10,15 @@ my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 
 my_function started at 1738438202.4023886
 my_function finished at 1738438202.402389
 my_function ok, result: 3
+my_function started at 1739706874.718127
+my_function finished at 1739706874.7181277
+my_function ok, result: 3
+my_function started at 1739706874.7191677
+my_function finished at 1739706874.7191684
+my_function ok, result: 3
+my_function started at 1739706878.2884905
+my_function finished at 1739706878.2884948
+my_function error: test_log_invalid_parameters.<locals>.my_function() missing 1 required positional argument: 'y'. Inputs: (1,), {}
+my_function started at 1739706886.5999658
+my_function finished at 1739706886.5999665
+my_function ok, result: 3

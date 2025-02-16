@@ -25,13 +25,12 @@ def main() -> None:
     elif user_input == 2:
         print("Для обработки выбран CSV-файл.")
         transactions_data = get_transactions_from_csv(r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions.csv")
-        print(transactions_data)
     elif user_input == 3:
         print("Для обработки выбран XLSX-файл.")
         transactions_data = get_transactions_from_excel(
             r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions_excel.xlsx"
         )
-
+    print(transactions_data)
     status_selected = input(
         """
 Введите статус, по которому необходимо выполнить фильтрацию.
