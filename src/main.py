@@ -30,7 +30,7 @@ def main() -> None:
         transactions_data = get_transactions_from_excel(
             r"C:\Users\Sergei\OneDrive\Рабочий стол\УЧЕБА\transactions_excel.xlsx"
         )
-    print(transactions_data)
+
     status_selected = input(
         """
 Введите статус, по которому необходимо выполнить фильтрацию.
