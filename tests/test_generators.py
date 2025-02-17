@@ -1,11 +1,12 @@
 import pytest
 
-from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
+from src.generators import (card_number_generator, filter_by_currency_csv_or_excel, filter_by_currency_json,
+                            transaction_descriptions)
 
 
-def test_filter_by_currency_usd(sample_transactions: list[dict]) -> None:
+def test_filter_by_currency_json_usd(sample_transactions_json: list[dict]) -> None:
     """Тестирование корректной фильтрации, если валюта - USD"""
-    result = filter_by_currency(sample_transactions, "USD")
+    result = filter_by_currency_json(sample_transactions_json, "USD")
     assert next(result) == {
         "id": 939719570,
         "state": "EXECUTED",
@@ -26,9 +27,30 @@ def test_filter_by_currency_usd(sample_transactions: list[dict]) -> None:
     }
 
 
-def test_filter_by_currency_rub(sample_transactions: list[dict]) -> None:
+def test_filter_by_currency_csv_or_excel_euro(sample_transaction_csv: list[dict]) -> None:
+    """Тестирование корректной фильтрации, если валюта - Euro"""
+    result = filter_by_currency_csv_or_excel(sample_transaction_csv, "EUR")
+    assert next(result) == {
+        "id": 302564.0,
+        "state": "EXECUTED",
+        "date": "2021-01-05T12:20:25Z",
+        "amount": 21153.0,
+        "currency_name": "Euro",
+        "currency_code": "EUR",
+    }
+    assert next(result) == {
+        "id": 2300960.0,
+        "state": "PENDING",
+        "date": "2020-05-10T21:18:59Z",
+        "amount": 21170.0,
+        "currency_name": "Euro",
+        "currency_code": "EUR",
+    }
+
+
+def test_filter_by_currency_json_rub(sample_transactions_json: list[dict]) -> None:
     """Тестирование корректной фильтрации, если валюта - RUB"""
-    result = filter_by_currency(sample_transactions, "RUB")
+    result = filter_by_currency_json(sample_transactions_json, "RUB")
     assert next(result) == {
         "id": 873106923,
         "state": "EXECUTED",
@@ -49,21 +71,54 @@ def test_filter_by_currency_rub(sample_transactions: list[dict]) -> None:
     }
 
 
-def test_filter_by_currency_no_currency(sample_transactions: list[dict]) -> None:
+def test_filter_by_currency_csv_or_excel_rub(sample_transaction_csv: list[dict]) -> None:
+    """Тестирование корректной фильтрации, если валюта - RUB"""
+    result = filter_by_currency_csv_or_excel(sample_transaction_csv, "RUB")
+    assert next(result) == {
+        "id": 4234093.0,
+        "state": "EXECUTED",
+        "date": "2021-07-08T07:31:21Z",
+        "amount": 23182.0,
+        "currency_name": "Ruble",
+        "currency_code": "RUB",
+    }
+    assert next(result) == {
+        "id": 3463793.0,
+        "state": "PENDING",
+        "date": "2020-02-25T07:24:59Z",
+        "amount": 17655.0,
+        "currency_name": "Ruble",
+        "currency_code": "RUB",
+    }
+
+
+def test_filter_by_currency_json_no_currency(sample_transactions_json: list[dict]) -> None:
     """Тестирование случаев, когда заданная валюта отсутствует"""
-    result = list(filter_by_currency(sample_transactions, "EURO"))
+    result = list(filter_by_currency_json(sample_transactions_json, "EURO"))
     assert result == []
 
 
-def test_filter_by_currency_empty(sample_transactions_empty: list) -> None:
+def test_filter_by_currency_csv_or_excel_no_currency(sample_transaction_csv: list[dict]) -> None:
+    """Тестирование случаев, когда заданная валюта отсутствует"""
+    result = list(filter_by_currency_csv_or_excel(sample_transaction_csv, "USD"))
+    assert result == []
+
+
+def test_filter_by_currency_json_empty(sample_transactions_empty: list) -> None:
     """Тестирование случаев, когда список транзакций отсутствует"""
-    result = list(filter_by_currency(sample_transactions_empty, "USD"))
+    result = list(filter_by_currency_json(sample_transactions_empty, "USD"))
     assert result == []
 
 
-def test_transaction_descriptions(sample_transactions: list[dict]) -> None:
-    """Тестирование корректности описания каждой транзакции"""
-    result = transaction_descriptions(sample_transactions)
+def test_filter_by_currency_csv_or_excel_empty(sample_transactions_empty: list) -> None:
+    """Тестирование случаев, когда список транзакций отсутствует"""
+    result = list(filter_by_currency_csv_or_excel(sample_transactions_empty, "USD"))
+    assert result == []
+
+
+def test_transaction_descriptions(sample_transactions_json: list[dict]) -> None:
+    """Тестирование корректности описания каждой транзакции из JSON-файла"""
+    result = transaction_descriptions(sample_transactions_json)
     assert next(result) == "Перевод организации"
     assert next(result) == "Перевод со счета на счет"
     assert next(result) == "Перевод со счета на счет"

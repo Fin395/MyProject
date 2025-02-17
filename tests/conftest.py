@@ -1,3 +1,5 @@
+from math import nan
+
 import pytest
 
 
@@ -37,7 +39,7 @@ def similar_date_transactions() -> list[dict]:
 
 
 @pytest.fixture
-def sample_transactions() -> list[dict]:
+def sample_transactions_json() -> list[dict]:
     """Создаем фикстуру для тестирования"""
     return [
         {
@@ -95,6 +97,47 @@ def sample_transactions_empty() -> list:
 
 
 @pytest.fixture
+def sample_transaction_csv() -> list[dict]:
+    """Создаем фикстуру для тестирования функции get_transaction_amount"""
+    return [
+        {"id": 650703.0, "state": "EXECUTED", "amount": 16210.0, "currency_name": "Sol", "currency_code": "PEN"},
+        {"id": 3598919.0, "state": "EXECUTED", "amount": 29740.0, "currency_name": "Peso", "currency_code": "COP"},
+        {
+            "id": 4234093.0,
+            "state": "EXECUTED",
+            "date": "2021-07-08T07:31:21Z",
+            "amount": 23182.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+        },
+        {
+            "id": 302564.0,
+            "state": "EXECUTED",
+            "date": "2021-01-05T12:20:25Z",
+            "amount": 21153.0,
+            "currency_name": "Euro",
+            "currency_code": "EUR",
+        },
+        {
+            "id": 3463793.0,
+            "state": "PENDING",
+            "date": "2020-02-25T07:24:59Z",
+            "amount": 17655.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+        },
+        {
+            "id": 2300960.0,
+            "state": "PENDING",
+            "date": "2020-05-10T21:18:59Z",
+            "amount": 21170.0,
+            "currency_name": "Euro",
+            "currency_code": "EUR",
+        },
+    ]
+
+
+@pytest.fixture
 def sample_transaction_in_rub() -> dict:
     """Создаем фикстуру для тестирования функции get_transaction_amount"""
     return {
@@ -109,8 +152,37 @@ def sample_transaction_in_rub() -> dict:
 def sample_transaction_in_usd() -> dict:
     """Создаем фикстуру для тестирования функции get_transaction_amount"""
     return {
-        "id": 41428829,
+        "id": 939719570,
         "state": "EXECUTED",
-        "date": "2019-07-03T18:35:29.512364",
-        "operationAmount": {"amount": "8221.37", "currency": {"name": "USD", "code": "USD"}},
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
     }
+
+
+@pytest.fixture
+def sample_transaction_with_nan() -> list[dict]:
+    """Создаем фикстуру для тестирования функции get_transaction_amount"""
+    return [
+        {
+            "id": 3967324.0,
+            "state": "EXECUTED",
+            "date": "2021-05-22T07:46:10Z",
+            "amount": 30809.0,
+            "currency_name": "Peso",
+            "currency_code": "PHP",
+            "from": nan,
+            "to": "Счет 99143269778241825075",
+            "description": "Открытие вклада",
+        },
+        {
+            "id": 5515847.0,
+            "state": "EXECUTED",
+            "date": "2021-08-30T06:11:23Z",
+            "amount": 18687.0,
+            "currency_name": "Euro",
+            "currency_code": "EUR",
+            "from": "Mastercard 3924599516675344",
+            "to": "Visa 4023206149439133",
+            "description": "Перевод с карты на карту",
+        },
+    ]

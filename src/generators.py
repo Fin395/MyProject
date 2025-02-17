@@ -1,10 +1,21 @@
 from typing import Any, Generator
 
 
-def filter_by_currency(transactions: list[dict], currency: str) -> Generator[dict, Any, None]:
-    """Функция возвращает итератор для получения транзакций, где валюта операции соответствует заданной"""
+def filter_by_currency_json(transactions: list[dict], currency: str) -> Generator[dict, Any, None]:
+    """Создаем итератор для получения транзакций из json-файла по заданной валюте"""
     return (
-        transaction for transaction in transactions if transaction["operationAmount"]["currency"]["code"] == currency
+        transaction
+        for transaction in transactions
+        if "operationAmount" in transaction.keys() and transaction["operationAmount"]["currency"]["code"] == currency
+    )
+
+
+def filter_by_currency_csv_or_excel(transactions: list[dict], currency: str) -> Generator[dict, Any, None]:
+    """Создаем итератор для получения транзакций из csv- или excel-файла по заданной валюте"""
+    return (
+        transaction
+        for transaction in transactions
+        if "currency_code" in transaction.keys() and transaction["currency_code"] == currency
     )
 
 

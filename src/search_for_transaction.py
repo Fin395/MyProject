@@ -1,0 +1,38 @@
+import re
+from collections import Counter
+from math import nan
+
+
+def search_for_transcations_by_string(list_of_transactions: list[dict], search_string: str) -> list[dict]:
+    """Функция ищет список транзакций по заданной строке"""
+    filtered_transactions = []
+    pattern = re.compile(f"{search_string.lower()}")
+    for banking_transaction in list_of_transactions:
+        for key, value in banking_transaction.items():
+            if banking_transaction[key] is nan:
+                banking_transaction[key] = None
+        description = banking_transaction["description"].lower()
+        match = pattern.search(f"{description}")
+        if match:
+            filtered_transactions.append(banking_transaction)
+    return filtered_transactions
+
+
+def count_transactions_category(list_of_transactions: list[dict], list_of_categories: list[str]) -> dict:
+    """Функция генерирует количество операций по заданным категориям"""
+    new_dict = {}
+    all_categories = []
+
+    for transaction in list_of_transactions:
+        all_categories.append(transaction.get("description"))
+
+    counted_categories = Counter(all_categories)
+    for key, value in counted_categories.items():
+        if key in list_of_categories:
+            new_dict[key] = value
+
+    for category in list_of_categories:
+        if category not in all_categories:
+            new_dict[category] = 0
+
+    return new_dict
